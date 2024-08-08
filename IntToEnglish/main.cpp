@@ -4,37 +4,37 @@ using namespace std;
 
 string onesHelper(char v){
     if (v == '1'){
-        return "One";
+        return "One ";
     }
     if (v == '2'){
-        return "Two";
+        return "Two ";
     }
     if (v == '3'){
-        return "Three";
+        return "Three ";
     }
     if (v == '4'){
-        return "Four";
+        return "Four ";
     }
     if (v == '5'){
-        return "Five";
+        return "Five ";
     }
     if (v == '6'){
-        return "Six";
+        return "Six ";
     }
     if (v == '7'){
-        return "Seven";
+        return "Seven ";
     }
     if (v == '8'){
-        return "Eight";
+        return "Eight ";
     }
     if (v == '9'){
-        return "Nine";
+        return "Nine ";
     }
     return "";
 }
 
 string tensHelper(string v){\
-    string r = " ";
+    string r = "";
     if (v[0] == '0'){
         r += onesHelper(v[1]);
     }
@@ -42,34 +42,34 @@ string tensHelper(string v){\
     if (v[0] == '1'){
 
         if (v[1] == '0'){
-            r += "Ten";
+            r += "Ten ";
         }
         if (v[1] == '1'){
-            r += "Eleven";
+            r += "Eleven ";
         }
         if (v[1] == '2'){
-            r += "Twelve";
+            r += "Twelve ";
         }
         if (v[1] == '3'){
-            r += "Thirteen";
+            r += "Thirteen ";
         }
         if (v[1] == '4'){
-            r += "Fourteen";
+            r += "Fourteen ";
         }
         if (v[1] == '5'){
-            r += "Fifteen";
+            r += "Fifteen ";
         }
         if (v[1] == '6'){
-            r += "Sixteen";
+            r += "Sixteen ";
         }
         if (v[1] == '7'){
-            r += "Seventeen";
+            r += "Seventeen ";
         }
         if (v[1] == '8'){
-            r += "Eighteen";
+            r += "Eighteen ";
         }
         if (v[1] == '9'){
-            r += "Nineteen";
+            r += "Nineteen ";
         }
 
 
@@ -107,7 +107,7 @@ string tensHelper(string v){\
 
 //helper method for hundreds
 string hundredHelper(string v){
-    string r = " ";
+    string r = "";
 
     //if all zeroes
     if (v == "000"){
@@ -116,7 +116,9 @@ string hundredHelper(string v){
 
     //if hundred
 if (v.length() == 3){
-    r = onesHelper(v[0]) + " Hundred";
+    if(v[0] != '0'){
+        r = onesHelper(v[0]) + "Hundred ";
+    }
     r += tensHelper(v.substr(1,2));
 } //if 10s
 else if (v.length() == 2){
@@ -130,6 +132,10 @@ return r;
 }
 
 string numberToWords(int num){
+
+    if (num == 0){
+        return "Zero";
+    }
 
     string number = "";
     string value = "";
@@ -145,15 +151,51 @@ string numberToWords(int num){
         number += hundredHelper(w.substr(0,3));
     }
 
-    //thousand
+    //thousands
     if (wl > 3 && wl < 7){
-    number += hundredHelper(w.substr(0,wl - 3)) + "Thousand";
-        number += hundredHelper(w.substr(3,3));
+        //if single digit thousands
+        if (wl == 4){
+            number += hundredHelper(w.substr(0,1)) + "Thousand ";
+            number += hundredHelper(w.substr(1,3));
+        }
+        //if tens of thousands
+        if (wl == 5){
+            number += hundredHelper(w.substr(0,2)) + "Thousand ";
+            number += hundredHelper(w.substr(2,3));
+        }
+        //if hundreds of thousands
+        if (wl == 6){
+            number += hundredHelper(w.substr(0,3)) + "Thousand ";
+            number += hundredHelper(w.substr(3,3));
+        }
     }
 
-    //million
+    //millions
     if (wl > 6 && wl < 10){
-
+        //single digit millions
+        if (wl == 7){
+            number += hundredHelper(w.substr(0,1)) + "Million ";
+            if (!hundredHelper(w.substr(1,3)).empty()){
+                number += hundredHelper(w.substr(1,3)) + "Thousand ";
+            }
+            number += hundredHelper(w.substr(4,3));
+        }
+        //tens of millions
+        if (wl == 8){
+            number += hundredHelper(w.substr(0,2)) + "Million ";
+            if (!hundredHelper(w.substr(2,3)).empty()){
+                number += hundredHelper(w.substr(2,3)) + "Thousand ";
+            }
+            number += hundredHelper(w.substr(5,3));
+        }
+        //hundreds of millions
+        if (wl == 9){
+            number += hundredHelper(w.substr(0,3)) + "Million ";
+            if (!hundredHelper(w.substr(3,3)).empty()){
+                number += hundredHelper(w.substr(3,3)) + "Thousand ";
+            }
+            number += hundredHelper(w.substr(6,3));
+        }
 
     }
 
@@ -161,15 +203,30 @@ string numberToWords(int num){
     if (wl > 9){
         //can only be 1 or 2 billion
         if (w[0] == '1'){
-            number += "One Billion";
+            number += "One Billion ";
+            if (!hundredHelper(w.substr(1,3)).empty()) {
+                number += hundredHelper(w.substr(1, 3)) + "Million ";
+            }
+            if (!hundredHelper(w.substr(4,3)).empty()){
+                number += hundredHelper(w.substr(4,3)) + "Thousand ";
+            }
+            number += hundredHelper(w.substr(7,3));
+
         } else{
-            number += "Two Billion";
+            number += "Two Billion ";
+            if (!hundredHelper(w.substr(1,3)).empty()) {
+                number += hundredHelper(w.substr(1, 3)) + "Million ";
+            }
+            if (!hundredHelper(w.substr(4,3)).empty()){
+                number += hundredHelper(w.substr(4,3)) + "Thousand ";
+            }
+            number += hundredHelper(w.substr(7,3));
         }
 
     }
 
 
-
+    number.erase(number.size() - 1);
     return number;
 
 }
@@ -177,6 +234,6 @@ string numberToWords(int num){
 
 
 int main() {
-    std::cout << numberToWords(10001) << std::endl;
+    std::cout << numberToWords(100009000) << std::endl;
     return 0;
 }
