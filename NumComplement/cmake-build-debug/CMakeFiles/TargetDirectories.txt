@@ -1,0 +1,3 @@
+/Users/devwork/Desktop/Projects/NumComplement/cmake-build-debug/CMakeFiles/NumComplement.dir
+/Users/devwork/Desktop/Projects/NumComplement/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/devwork/Desktop/Projects/NumComplement/cmake-build-debug/CMakeFiles/rebuild_cache.dir
