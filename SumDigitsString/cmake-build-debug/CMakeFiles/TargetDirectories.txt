@@ -1,0 +1,3 @@
+/Users/devwork/Desktop/github/myLeetCodeSolutions/SumDigitsString/cmake-build-debug/CMakeFiles/SumDigitsString.dir
+/Users/devwork/Desktop/github/myLeetCodeSolutions/SumDigitsString/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/devwork/Desktop/github/myLeetCodeSolutions/SumDigitsString/cmake-build-debug/CMakeFiles/rebuild_cache.dir
