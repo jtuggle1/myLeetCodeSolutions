@@ -1,0 +1,5 @@
+# ninja log v5
+1	438	1725467721412788283	CMakeFiles/transposeMatrix.dir/main.cpp.o	91d362403c0fc02c
+440	473	1725467721448737808	transposeMatrix	da55e4fb94f6aab2
+2	313	1725467744232333653	CMakeFiles/transposeMatrix.dir/main.cpp.o	91d362403c0fc02c
+313	345	1725467744265965290	transposeMatrix	da55e4fb94f6aab2
